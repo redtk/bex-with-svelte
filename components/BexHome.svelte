@@ -1,50 +1,41 @@
 <script lang="ts">
-  // hack
-  // Not clear why, but defining classes in <stile></style> doesn't work.
-  const styles = {
-    container: {
-      padding: "4px",
-      background: "#fff",
-      position: "absolute",
-      top: 0,
-      left: 0,
-      "font-size": "16px",
-      "min-height": "100vh",
-      "border-right": "1px solid #333"
-    },
-    link: {
-      cursor: "pointer"
-    }
+  const style = {
+    container: [
+      "padding: 4px",
+      "background: #fff",
+      "position: absolute",
+      "top: 0",
+      "left: 0",
+      "font-size: 16px",
+      "min-height: 100vh",
+      "border-right: 1px solid #333"
+    ].join(";"),
+    link: 'cursor: "pointer"'
   }
-
-  const style = (cls, prop, val) => {
-    styles[cls][prop] = val
-  }
-
-  const stringify = (obj) => {
-    return Object.keys(obj)
-      .map((rule) => `${rule}: ${obj[rule]};`)
-      .join(" ")
-  }
-
-  $: container = stringify(styles.container)
-  $: link = stringify(styles.link)
 </script>
 
-<div style={container}>
+<div class="container" style={style.container}>
   Browser extension
   <div>
-    <a
-      style={link}
-      href={null}
-      on:click={() => style("container", "background", "red")}>red</a>
-    <a
-      style={link}
-      href={null}
-      on:click={() => style("container", "background", "green")}>green</a>
-    <a
-      style={link}
-      href={null}
-      on:click={() => style("container", "background", "blue")}>blue</a>
+    <a class="link" style={style.link} href={null}>foo</a>
+    <a style={style.link} href={null}>bar</a>
+    <a style={style.link} href={null}>baz</a>
   </div>
 </div>
+
+<style>
+  /* classes not working
+  .container {
+      padding: 4px;
+      background: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 16px;
+      min-height: 100vh;
+      border-right: 1px solid #333;
+  }
+  .link {
+    cursor: pointer;
+  } */
+</style>
