@@ -25,6 +25,7 @@
   "manifest": {
     "host_permissions": [
       "https://*/*"
-    ]
+    ],
+    "action": {}
   }
 }
